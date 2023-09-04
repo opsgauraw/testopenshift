@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: java-artifact
-          path: /home/runner/.m2/repository/com/companyname/automobile/testapp/1.0/  # Replace with the path to your built artifacts      
+          path: /home/runner/work/testopenshift/testopenshift/target/  # Replace with the path to your built artifacts      
 
   trigger-on-pr-approval:
     runs-on: ubuntu-latest
