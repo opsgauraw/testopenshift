@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - master
   pull_request:
     types:
       - opened
@@ -20,7 +21,7 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-        working-directory: ./tmp
+        working-directory: 
 
   trigger-on-pr-approval:
     runs-on: ubuntu-latest
