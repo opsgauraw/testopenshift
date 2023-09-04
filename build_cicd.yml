@@ -1,0 +1,48 @@
+name: Java Build on PR Approval
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11' # Adjust to your desired JDK version
+
+      - name: Build with Maven
+        run: mvn clean install
+        working-directory: ./tmp
+
+  trigger-on-pr-approval:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'synchronize'
+
+    steps:
+      - name: Wait for PR approval
+        id: pr-approval
+        uses: "softprops/action-timestamp@v1"
+        with:
+          id: pr-approval
+          step: 'build'
+
+      - name: Trigger on PR approval
+        if: steps.pr-approval.outputs.timestamp
+        run: |
+          # Add actions or commands to perform when the PR is approved
+          echo "PR has been approved."
+
+# Add other steps or actions as needed for your specific build and deployment process.
