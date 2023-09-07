@@ -1,0 +1,22 @@
+name: Sync Feature Branch with Develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Sync with Develop
+        run: |
+          git checkout develop
+          git pull origin develop
+          git checkout BTWCT-45643-new-changes
+          git merge develop
+          git push origin BTWCT-45643-new-changes
