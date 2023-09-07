@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - develop
-  workflow_dispatch:
+  workflow_dispatch: # add this trigger
+    inputs:
+      branch_to_update:
+        description: "this is manual"
+        required: true
         
 
 jobs:
