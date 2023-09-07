@@ -1,0 +1,22 @@
+name: On-Demand Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      parameter_name:
+        description: A description of the input parameter.
+        required: true
+        default: "Default value"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run a custom command
+        run: |
+          echo "Running the workflow with parameter: ${{ github.event.inputs.parameter_name }}"
+          # Add your custom commands and scripts here
