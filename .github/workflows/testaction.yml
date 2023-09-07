@@ -1,12 +1,11 @@
 name: On-Demand Workflow
 
 on:
+  push:
+    branches:
+      -  develop
   workflow_dispatch:
-    inputs:
-      parameter_name:
-        description: A description of the input parameter.
-        required: true
-        default: "Default value"
+  
 
 jobs:
   build:
@@ -18,5 +17,8 @@ jobs:
 
       - name: Run a custom command
         run: |
-          echo "Running the workflow with parameter: ${{ github.event.inputs.parameter_name }}"
+          git checkout BTWCT-45643-new-changes
+          git merge --no-ff origin/develop
+          git push origin BTWCT-45643-new-changes
+          echo "feature branch is upto date"
           # Add your custom commands and scripts here
