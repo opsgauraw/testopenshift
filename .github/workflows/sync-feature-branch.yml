@@ -2,8 +2,8 @@ name: Auto Sync Feature Branch with Develop
 
 on:
     push:
-    branches:
-      - BTWCT-45643-new-changes
+      branches:
+        - BTWCT-45643-new-changes
 
 jobs:
   sync:
