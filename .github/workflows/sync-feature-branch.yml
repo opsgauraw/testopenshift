@@ -1,11 +1,11 @@
 name: Auto Sync Feature Branch with Develop
 
 on:
-     workflow_dispatch:
-       inputs:
-         message:
-           description: 'Enter any msg'
-             required: true
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Enter any msg'
+        required: true
 
 jobs:
   sync:
