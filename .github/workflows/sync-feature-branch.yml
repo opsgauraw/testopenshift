@@ -15,6 +15,9 @@ jobs:
 
       - name: Sync with Develop
         run: |
+          echo "running all git commands"
+          pwd
+          git fetch
           git checkout develop
           git pull origin develop
           git checkout BTWCT-45643-new-changes
