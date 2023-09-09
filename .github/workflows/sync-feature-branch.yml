@@ -3,13 +3,7 @@ name: Sync Feature Branch with Develop
 on:
   push:
     branches:
-      - develop
-  workflow_dispatch: # add this trigger
-    inputs:
-      branch_to_update:
-        description: "this is manual"
-        
-
+      - BTWCT-45643-new-changes
 jobs:
   sync:
     runs-on: ubuntu-latest
