@@ -1,11 +1,9 @@
 name: Auto Sync Feature Branch with Develop
 
 on:
-  workflow_dispatch:
-    inputs:
-      feature_branch_name:
-        description: 'Enter a message to echo'
-        required: true
+    push:
+    branches:
+      - BTWCT-45643-new-changes
 
 jobs:
   sync:
@@ -20,7 +18,7 @@ jobs:
 
       - name: Switch to feature branch
         run: |
-          feature_branch="${{ github.event.inputs.feature_branch_name }}"
+          feature_branch="BTWCT-45643-new-changes"
           git checkout "$feature_branch"
           git merge develop --no-edit
 
