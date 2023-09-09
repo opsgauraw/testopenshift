@@ -1,6 +1,9 @@
 name: Auto Sync Feature Branch with Develop
 
 on:
+  push:
+    branches:
+      - BTWCT-45643-new-changes
   workflow_dispatch:
     inputs:
       feature_branch_name:
