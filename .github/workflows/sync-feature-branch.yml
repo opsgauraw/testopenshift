@@ -1,9 +1,11 @@
 name: Auto Sync Feature Branch with Develop
 
 on:
-    push:
-      branches:
-        - BTWCT-45643-new-changes
+     workflow_dispatch:
+       inputs:
+         message:
+           description: 'Enter any msg'
+             required: true
 
 jobs:
   sync:
