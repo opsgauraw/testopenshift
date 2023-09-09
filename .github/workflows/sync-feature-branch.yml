@@ -1,10 +1,12 @@
-name: Sync Feature Branch with Develop
+name: Auto Sync Feature Branch with Develop
 
 on:
-  workflow_dispatch: # add this trigger
+  workflow_dispatch:
     inputs:
-      branch_to_update:
-        description: "this is manual"
+      feature_branch_name:
+        description: 'Name of the feature branch to sync'
+        required: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -13,13 +15,14 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Sync with Develop
+      - name: Fetch latest changes from develop
+        run: git fetch origin develop:develop
+
+      - name: Switch to feature branch
         run: |
-          echo "running all git commands"
-          pwd
-          git fetch
-          git checkout develop
-          git pull origin develop
-          git checkout BTWCT-45643-new-changes
-          git merge develop
-          git push origin BTWCT-45643-new-changes
+          feature_branch="${{ github.event.inputs.feature_branch_name }}"
+          git checkout "$feature_branch"
+          git merge develop --no-edit
+
+      - name: Push changes to feature branch
+        run: git push origin "$feature_branch"
