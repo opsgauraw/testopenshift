@@ -2,9 +2,9 @@ name: Sync Feature Branch with Develop
 
 on:
     workflow_dispatch: # add this trigger
-    inputs:
-      branch_to_update:
-        description: "this is manual"
+      inputs:
+        branch_to_update:
+          description: "this is manual"
 jobs:
   sync:
     runs-on: ubuntu-latest
